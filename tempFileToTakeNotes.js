@@ -45,6 +45,18 @@ function basicThrottle(callbackFunc, delay) {
   };
 }
 
+function basicThrottleButTimeBased(callBackFunction, delay) {
+  let last = 0;
+
+  return (...args) => {
+    let now = new Date().getTime();
+    if (now - last < delay) return;
+
+    last = now;
+    return callBackFunction(...args);
+  };
+}
+
 // Pseudocode (basicTrailingThrottle - leading + trailing):
 // 1. Store a throttle flag and savedArgs in closure
 // 2. Return a function that:
@@ -255,7 +267,9 @@ function advancedDeepClone(toBeCloned, seen = new WeakMap()) {
   if (toBeCloned instanceof Set) {
     const clonedSet = new Set();
     seen.set(toBeCloned, clonedSet);
-    toBeCloned.forEach((value) => clonedSet.add(advancedDeepClone(value, seen)));
+    toBeCloned.forEach((value) =>
+      clonedSet.add(advancedDeepClone(value, seen)),
+    );
     return clonedSet;
   }
 
@@ -349,7 +363,7 @@ function createDebouncedSearch() {
     }
 
     const filtered = dummyData.filter((item) =>
-      item.toLowerCase().includes(normalizedQuery)
+      item.toLowerCase().includes(normalizedQuery),
     );
 
     const html = filtered.map((item) => `<li>${item}</li>`).join("");

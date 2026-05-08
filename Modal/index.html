@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="modalBtn" onclick="openModal()">Open Modal</button>
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 class="title">Would you like to Push Notifications?</h2>
+        <p>Get notified when something important happens!</p>
+        <button class="btn yes notif-btn" onclick="closeModal()">Yes</button>
+        <button class="btn later" onclick="closeModal()">Later</button>
+      </div>
+    </div>
+  </body>
+</html>

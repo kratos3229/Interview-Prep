@@ -386,6 +386,50 @@ function createDebouncedSearch() {
   document.body.appendChild(container);
 }
 
+//Flatten an array
+//------------------Pseudocode------------------
+// FUNCTION flattenNestedArray(array, n)
+
+//     CREATE empty result array
+
+//     FUNCTION helper(arr, depth)
+
+//         FOR EACH value IN arr
+
+//             IF value is an array AND depth < n
+//                 CALL helper(value, depth + 1)
+
+//             ELSE
+//                 ADD value TO result
+
+//         END FOR
+
+//     END FUNCTION
+
+//     CALL helper(array, 0)
+
+//     RETURN result
+
+// END FUNCTION
+
+function flattenNestedArray(array = [], n = 1) {
+  let result = [];
+
+  function helper(arr, depth) {
+    for (const val of arr) {
+      if (Array.isArray(val) && depth < n) {
+        helper(val, depth + 1);
+      } else {
+        result.push(val);
+      }
+    }
+  }
+
+  helper(array, 0);
+
+  return result;
+}
+
 // Interview Follow-ups:
 // Q: Why debounce over throttle here?
 //    Debounce: fires once AFTER user stops typing.

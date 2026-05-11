@@ -1,3 +1,14 @@
+// ===== AUTOCOMPLETE / TYPEAHEAD =====
+// Pseudocode:
+//   1. On keyup:
+//      - Arrow keys: move focus index up/down, highlight the focused suggestion
+//      - Enter: select the focused suggestion (fill input, clear list)
+//      - Escape: clear suggestions
+//      - Any other key: debounce an API fetch for matching products
+//   2. On click (suggestion item): select that suggestion
+//   3. Debounce prevents firing API calls on every keystroke — only fires
+//      after user pauses for 300ms
+
 // DOM references & state
 const input = document.querySelector(".searchInput");
 const suggestionsContainer = document.querySelector(".suggestions");
